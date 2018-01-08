@@ -1,2 +1,0 @@
-copy "$transferpath/p8024_remount_ui" "$preinitpath/"
-return 1
