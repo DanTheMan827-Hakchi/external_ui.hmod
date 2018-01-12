@@ -36,4 +36,3 @@ externalUiHmod(){
     [ "$1" != "nomount" ] && [ -d "$destuipath" ] && mount_bind "$destuipath" "$uipath"
   fi
 }
-externalUiHmod
