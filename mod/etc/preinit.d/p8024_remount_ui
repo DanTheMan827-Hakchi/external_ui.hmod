@@ -33,7 +33,7 @@ externalUiHmod(){
       copy "$uipath/" "$destuipath/"
     fi
 
-    [ -d "$destuipath" ] && mount_bind "$destuipath" "$uipath"
+    [ "$1" != "nomount" ] && [ -d "$destuipath" ] && mount_bind "$destuipath" "$uipath"
   fi
 }
 externalUiHmod
