@@ -30,7 +30,7 @@ externalUiHmod(){
 
     if [ ! -d "$destuipath" ] && touch "$mountpoint/media/hakchi/"; then
       mkdir -p "$destuipath"
-      cp -r $uipath/* "$destuipath/"
+      copy "$uipath/" "$destuipath/"
     fi
 
     [ -d "$destuipath" ] && mount_bind "$destuipath" "$uipath"
