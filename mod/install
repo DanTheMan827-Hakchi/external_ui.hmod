@@ -1,1 +1,2 @@
-source "$transferpath/etc/preinit.d/p8024_remount_ui" nomount
+source "$transferpath/etc/preinit.d/b8024_remount_ui"
+externalUiHmod nomount
