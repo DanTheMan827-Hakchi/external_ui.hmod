@@ -1,0 +1,38 @@
+externalUiHmod(){
+  local sfidentifier
+  local uipath
+  local destuipath
+  case "$(cat "$mountpoint/etc/clover/boardtype")-$(cat "$mountpoint/etc/clover/REGION")" in
+    dp-nes-EUR_USA)
+      sfidentifer="nes-usa"
+      uipath="$mountpoint/usr/share/clover-ui"
+      ;;
+    dp-hvc-JPN)
+      sfidentifer="nes-jpn"
+      uipath="$mountpoint/usr/share/clover-ui"
+      ;;
+    dp-shvc-USA)
+      sfidentifer="snes-usa"
+      uipath="$mountpoint/usr/share/ui/snes-usa"
+      ;;
+    dp-shvc-EUR)
+      sfidentifer="snes-eur"
+      uipath="$mountpoint/usr/share/ui/snes-eur"
+      ;;
+    dp-shvc-JPN)
+      sfidentifer="snes-jpn"
+      uipath="$mountpoint/usr/share/ui/shvc"
+      ;;
+  esac
+
+  if [ -d "$uipath" ]; then
+    destuipath="$mountpoint/media/hakchi/ui/$sfidentifer"
+
+    if [ ! -d "$destuipath" ] && touch "$mountpoint/media/hakchi/"; then
+      mkdir -p "$destuipath"
+      copy "$uipath/" "$destuipath/"
+    fi
+
+    [ "$1" != "nomount" ] && [ -d "$destuipath" ] && mount_bind "$destuipath" "$uipath"
+  fi
+}
