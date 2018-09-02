@@ -4,29 +4,29 @@ externalUiHmod(){
   local destuipath
   case "$(cat "$mountpoint/etc/clover/boardtype")-$(cat "$mountpoint/etc/clover/REGION")" in
     dp-nes-EUR_USA)
-      sfidentifer="nes-usa"
+      sfidentifier="nes-usa"
       uipath="$mountpoint/usr/share/clover-ui"
       ;;
     dp-hvc-JPN)
-      sfidentifer="nes-jpn"
-      uipath="$mountpoint/usr/share/clover-ui"
+      [ "$sftype" = "hvcj" ] && sfidentifier="hvcj-jpn" || sfidentifier="nes-jpn"
+      [ "$sftype" = "hvcj" ] && uipath="$mountpoint/usr/share/ui/hvc" || uipath="$mountpoint/usr/share/clover-ui"
       ;;
     dp-shvc-USA)
-      sfidentifer="snes-usa"
+      sfidentifier="snes-usa"
       uipath="$mountpoint/usr/share/ui/snes-usa"
       ;;
     dp-shvc-EUR)
-      sfidentifer="snes-eur"
+      sfidentifier="snes-eur"
       uipath="$mountpoint/usr/share/ui/snes-eur"
       ;;
     dp-shvc-JPN)
-      sfidentifer="snes-jpn"
+      sfidentifier="snes-jpn"
       uipath="$mountpoint/usr/share/ui/shvc"
       ;;
   esac
 
   if [ -d "$uipath" ]; then
-    destuipath="$mountpoint/media/hakchi/ui/$sfidentifer"
+    destuipath="$mountpoint/media/hakchi/ui/$sfidentifier"
 
     if [ ! -d "$destuipath" ] && touch "$mountpoint/media/hakchi/"; then
       mkdir -p "$destuipath"
